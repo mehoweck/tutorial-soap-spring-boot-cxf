@@ -5,7 +5,7 @@ import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -16,8 +16,8 @@ public class SimpleBootCxfApplication {
     }
 
     @Bean
-    public ServletRegistrationBean cxfServlet() {
-        return new ServletRegistrationBean(new CXFServlet(), "/soap-api/*");
+    public ServletRegistrationBean<CXFServlet> cxfServlet() {
+        return new ServletRegistrationBean<>(new CXFServlet(), "/soap-api/*");
     }
 
     @Bean(name = Bus.DEFAULT_BUS_ID)
